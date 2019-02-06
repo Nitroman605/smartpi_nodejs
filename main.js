@@ -1,6 +1,7 @@
-var i2c = require('i2c');
+const raspi = require('raspi');
+const I2C = require('raspi-i2c').I2C;
 var address = 0x38;
-var wire = new i2c(address, {device: '/dev/i2c-1'});
-wire.scan(function(err, data) {
-    console.log(data)
+raspi.init(() => {
+    const i2c = new I2C();
+    console.log(i2c.readByteSync(address)); // Read one byte from the device at address 18
   });
